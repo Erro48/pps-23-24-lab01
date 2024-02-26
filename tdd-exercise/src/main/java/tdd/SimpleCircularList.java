@@ -39,18 +39,22 @@ public class SimpleCircularList implements CircularList {
             this.listHead = LIST_FIRST_INDEX;
         }
         
-        final Optional<Integer> opt = Optional.of(this.list.get(this.listHead));
+        final Optional<Integer> next = Optional.of(this.list.get(this.listHead));
         this.listHead = this.listHead + 1;
-        return opt;
+        return next;
     }
 
     @Override
     public Optional<Integer> previous() {
-        listHead = listHead - 1;
-        if (listHead < 0) {
-            listHead = this.size() - 1;
+        if (this.isEmpty()) {
+            return Optional.empty();
         }
-        return Optional.of(this.list.get(listHead));
+
+        this.listHead = this.listHead - 1;
+        if (this.listHead < 0) {
+            this.listHead = this.size() - 1;
+        }
+        return Optional.of(this.list.get(this.listHead));
     }
 
     @Override

@@ -130,4 +130,10 @@ public class CircularListTest {
         var next = this.list.next();
         assertFalse(next.isPresent());
     }
+
+    @Test
+    void previousOnEmptyList() {
+        var previous = this.list.previous();
+        assertFalse(previous.isPresent());
+    }
 }

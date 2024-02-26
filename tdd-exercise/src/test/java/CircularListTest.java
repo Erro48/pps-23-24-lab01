@@ -43,5 +43,11 @@ public class CircularListTest {
         assertEquals(itemsToAdd, this.list.size());
     }
 
-
+    @Test
+    void getNextValue() {
+        this.list.add(0);
+        var next = this.list.next();
+        assertTrue(next.isPresent());
+        assertEquals(0, next.get());
+    }
 }

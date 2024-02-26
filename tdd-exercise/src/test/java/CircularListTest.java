@@ -24,23 +24,24 @@ public class CircularListTest {
     }
 
     @Test
-    void testInitializeEmptyList() {
+    void initializeEmptyList() {
         assertTrue(this.list.isEmpty());
     }
 
     @Test
-    void testAddElement() {
+    void addElement() {
         this.list.add(0);
         assertFalse(this.list.isEmpty());
     }
 
     @Test
-    void testAddMultipleElements() {
+    void addMultipleElements() {
         int itemsToAdd = 10;
         for (int i = 0; i < itemsToAdd; i++) {
             this.list.add(i);
         }
         assertEquals(itemsToAdd, this.list.size());
     }
+
 
 }

@@ -50,4 +50,20 @@ public class CircularListTest {
         assertTrue(next.isPresent());
         assertEquals(0, next.get());
     }
+
+    @Test
+    void getNextValues() {
+        final int itemsToAdd = 10;
+        for (int i = 0; i < itemsToAdd; i++) {
+            this.list.add(i);
+        }
+
+        this.list.next();
+        this.list.next();
+        this.list.next();
+        var next = this.list.next();
+
+        assertTrue(next.isPresent());
+        assertEquals(3, next.get());
+    }
 }

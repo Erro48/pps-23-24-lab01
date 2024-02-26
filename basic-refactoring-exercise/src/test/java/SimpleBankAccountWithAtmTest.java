@@ -55,4 +55,13 @@ class SimpleBankAccountWithAtmTest {
         this.atmBankAccount.withdraw(this.accountHolder.getId(), 30);
         assertEquals(68, this.atmBankAccount.getBalance());
     }
+
+    @Test
+    void testWithdrawAmountMoreThanBalance() {
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
+        assertThrows(
+            IllegalStateException.class,
+            () -> this.atmBankAccount.withdraw(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT)
+        );
+    }
 }

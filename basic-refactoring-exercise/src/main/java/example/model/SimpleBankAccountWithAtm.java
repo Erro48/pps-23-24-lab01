@@ -32,6 +32,11 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public void withdraw(int userID, double amount) {
+        final double withdrawAmount = amount + ATM_FEE;
+        if (withdrawAmount > this.getBalance()) {
+            throw new IllegalStateException("Can't withdraw an amount more than the balance");
+        }
+
         this.bankAccount.withdraw(userID, amount + ATM_FEE);
     }
 

@@ -64,4 +64,11 @@ class SimpleBankAccountWithAtmTest {
             () -> this.atmBankAccount.withdraw(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT)
         );
     }
+
+    @Test
+    void testWrongWithdraw() {
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
+        this.atmBankAccount.withdraw(this.accountHolder2.getId(), 30);
+        assertEquals(99, this.atmBankAccount.getBalance());
+    }
 }

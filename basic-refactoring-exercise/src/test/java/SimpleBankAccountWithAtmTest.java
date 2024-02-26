@@ -1,6 +1,9 @@
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -70,5 +73,13 @@ class SimpleBankAccountWithAtmTest {
         this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
         this.atmBankAccount.withdraw(this.accountHolder2.getId(), 30);
         assertEquals(99, this.atmBankAccount.getBalance());
+    }
+
+    @Test
+    void testAtmBankAccountHolder() {
+        assertAll(
+            () -> assertSame(this.accountHolder, this.atmBankAccount.getHolder()),
+            () -> assertNotEquals(this.accountHolder2, this.atmBankAccount.getHolder())
+        );
     }
 }

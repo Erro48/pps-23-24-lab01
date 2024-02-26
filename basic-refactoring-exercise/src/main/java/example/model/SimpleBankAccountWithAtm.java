@@ -11,8 +11,7 @@ public class SimpleBankAccountWithAtm implements BankAccount {
 
     @Override
     public AccountHolder getHolder() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHolder'");
+        return this.bankAccount.getHolder();
     }
 
     @Override

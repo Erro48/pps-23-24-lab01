@@ -14,7 +14,8 @@ import example.model.SimpleBankAccountWithAtm;
 
 class SimpleBankAccountWithAtmTest {
 
-    private static final int BASIC_DOLLAR_AMOUNT = 100;
+    private static final int BASIC_WITHDRAW_AMOUNT = 30;
+    private static final int BASIC_DEPOSIT_AMOUNT = 100;
     AccountHolder accountHolder;
     AccountHolder accountHolder2;
     BankAccount atmBankAccount;
@@ -33,8 +34,8 @@ class SimpleBankAccountWithAtmTest {
 
     @Test
     void testDeposit() {
-        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
-        assertEquals(99, this.atmBankAccount.getBalance());
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DEPOSIT_AMOUNT);
+        assertEquals(BASIC_DEPOSIT_AMOUNT - SimpleBankAccountWithAtm.ATM_FEE, this.atmBankAccount.getBalance());
     }
 
     @Test
@@ -47,32 +48,33 @@ class SimpleBankAccountWithAtmTest {
 
     @Test
     void testWrongDeposit() {
-        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
-        this.atmBankAccount.deposit(this.accountHolder2.getId(), BASIC_DOLLAR_AMOUNT);
-        assertEquals(99, this.atmBankAccount.getBalance());
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DEPOSIT_AMOUNT);
+        this.atmBankAccount.deposit(this.accountHolder2.getId(), BASIC_DEPOSIT_AMOUNT);
+        assertEquals(BASIC_DEPOSIT_AMOUNT - SimpleBankAccountWithAtm.ATM_FEE, this.atmBankAccount.getBalance());
     }
 
     @Test
     void testWithdraw() {
-        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
-        this.atmBankAccount.withdraw(this.accountHolder.getId(), 30);
-        assertEquals(68, this.atmBankAccount.getBalance());
+        final double expectedBalance = BASIC_DEPOSIT_AMOUNT - BASIC_WITHDRAW_AMOUNT - SimpleBankAccountWithAtm.ATM_FEE * 2;
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DEPOSIT_AMOUNT);
+        this.atmBankAccount.withdraw(this.accountHolder.getId(), BASIC_WITHDRAW_AMOUNT);
+        assertEquals(expectedBalance, this.atmBankAccount.getBalance());
     }
 
     @Test
     void testWithdrawAmountMoreThanBalance() {
-        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DEPOSIT_AMOUNT);
         assertThrows(
             IllegalStateException.class,
-            () -> this.atmBankAccount.withdraw(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT)
+            () -> this.atmBankAccount.withdraw(this.accountHolder.getId(), BASIC_DEPOSIT_AMOUNT)
         );
     }
 
     @Test
     void testWrongWithdraw() {
-        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
-        this.atmBankAccount.withdraw(this.accountHolder2.getId(), 30);
-        assertEquals(99, this.atmBankAccount.getBalance());
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DEPOSIT_AMOUNT);
+        this.atmBankAccount.withdraw(this.accountHolder2.getId(), BASIC_WITHDRAW_AMOUNT);
+        assertEquals(BASIC_DEPOSIT_AMOUNT - SimpleBankAccountWithAtm.ATM_FEE, this.atmBankAccount.getBalance());
     }
 
     @Test

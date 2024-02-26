@@ -2,7 +2,7 @@ package example.model;
 
 public class SimpleBankAccountWithAtm implements BankAccount {
 
-    private final int ATM_FEE = 1;
+    public static final int ATM_FEE = 1;
     private final BankAccount bankAccount;
 
 	public SimpleBankAccountWithAtm(AccountHolder accountHolder, int balance) {

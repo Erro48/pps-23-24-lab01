@@ -31,11 +31,16 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        if (listHead >= this.size()) {
-            listHead = LIST_FIRST_INDEX;
+        if (this.isEmpty()) {
+            return Optional.empty();
         }
-        final Optional<Integer> opt = Optional.of(this.list.get(listHead));
-        listHead = listHead + 1;
+        
+        if (this.listHead >= this.size()) {
+            this.listHead = LIST_FIRST_INDEX;
+        }
+        
+        final Optional<Integer> opt = Optional.of(this.list.get(this.listHead));
+        this.listHead = this.listHead + 1;
         return opt;
     }
 

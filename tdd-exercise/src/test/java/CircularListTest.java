@@ -124,4 +124,10 @@ public class CircularListTest {
         this.list.reset();
         assertEquals(0, this.list.next().get());
     }
+
+    @Test
+    void nextOnEmptyList() {
+        var next = this.list.next();
+        assertFalse(next.isPresent());
+    }
 }

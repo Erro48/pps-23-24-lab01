@@ -110,6 +110,18 @@ public class CircularListTest {
         var prev = this.list.previous();
         assertTrue(prev.isPresent());
         assertEquals(1, prev.get());
+    }
 
+    @Test
+    void reset() {
+        int itemsToAdd = 10;
+        for (int i = 0; i < itemsToAdd; i++) {
+            this.list.add(i);
+        }
+        this.list.next();
+        this.list.next();
+        this.list.next();
+        this.list.reset();
+        assertEquals(0, this.list.next().get());
     }
 }

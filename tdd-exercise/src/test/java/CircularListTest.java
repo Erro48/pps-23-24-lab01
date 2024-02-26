@@ -102,4 +102,14 @@ public class CircularListTest {
         assertTrue(prev.isPresent());
         assertEquals(6, prev.get());
     }
+
+    @Test
+    void getLastElementFromFirstElement() {
+        this.list.add(0);
+        this.list.add(1);
+        var prev = this.list.previous();
+        assertTrue(prev.isPresent());
+        assertEquals(1, prev.get());
+
+    }
 }

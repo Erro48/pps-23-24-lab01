@@ -15,7 +15,7 @@ public class SimpleCircularList implements CircularList {
     }
 
     @Override
-    public void add(int element) {
+    public void add(final int element) {
         this.list.add(element);
     }
 

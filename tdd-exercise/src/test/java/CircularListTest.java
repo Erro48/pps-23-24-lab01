@@ -1,11 +1,8 @@
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import tdd.CircularList;
@@ -42,6 +39,7 @@ public class CircularListTest {
         }
         assertEquals(itemsToAdd, this.list.size());
     }
+
 
     @Test
     void getNextValue() {
@@ -83,9 +81,9 @@ public class CircularListTest {
         this.list.add(0);
         this.list.add(1);
         this.list.next();
-        var prev = this.list.previous();
-        assertTrue(prev.isPresent());
-        assertEquals(0, prev.get());
+        var previous = this.list.previous();
+        assertTrue(previous.isPresent());
+        assertEquals(0, previous.get());
     }
 
     @Test
@@ -98,20 +96,33 @@ public class CircularListTest {
         this.list.previous();
         this.list.previous();
         this.list.previous();
-        var prev = this.list.previous();
-        assertTrue(prev.isPresent());
-        assertEquals(6, prev.get());
+        var previous = this.list.previous();
+        assertTrue(previous.isPresent());
+        assertEquals(6, previous.get());
     }
 
     @Test
     void getLastElementFromFirstElement() {
         this.list.add(0);
         this.list.add(1);
-        var prev = this.list.previous();
-        assertTrue(prev.isPresent());
-        assertEquals(1, prev.get());
+        var previous = this.list.previous();
+        assertTrue(previous.isPresent());
+        assertEquals(1, previous.get());
     }
 
+    
+    @Test
+    void nextOnEmptyList() {
+        var next = this.list.next();
+        assertFalse(next.isPresent());
+    }
+    
+    @Test
+    void previousOnEmptyList() {
+        var previous = this.list.previous();
+        assertFalse(previous.isPresent());
+    }
+    
     @Test
     void reset() {
         int itemsToAdd = 10;
@@ -123,17 +134,5 @@ public class CircularListTest {
         this.list.next();
         this.list.reset();
         assertEquals(0, this.list.next().get());
-    }
-
-    @Test
-    void nextOnEmptyList() {
-        var next = this.list.next();
-        assertFalse(next.isPresent());
-    }
-
-    @Test
-    void previousOnEmptyList() {
-        var previous = this.list.previous();
-        assertFalse(previous.isPresent());
     }
 }

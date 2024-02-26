@@ -41,8 +41,8 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'previous'");
+        listHead = listHead - 1;
+        return Optional.of(this.list.get(listHead));
     }
 
     @Override

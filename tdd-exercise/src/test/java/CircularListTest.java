@@ -77,4 +77,15 @@ public class CircularListTest {
         assertTrue(next.isPresent());
         assertEquals(0, next.get());
     }
+
+    @Test
+    void getPreviousValue() {
+        this.list.add(0);
+        this.list.add(1);
+        this.list.next();
+        var prev = this.list.previous();
+        assertTrue(prev.isPresent());
+        assertEquals(0, prev.get());
+
+    }
 }

@@ -26,4 +26,13 @@ public class IteratorCircularListTest {
         this.list.add(0);
         assertFalse(this.list.isEmpty());
     }
+
+    @Test
+    void addMultipleElements() {
+        final int itemsToAdd = 10;
+        for (int i = 0; i < itemsToAdd; i++) {
+            this.list.add(i);
+        }
+        assertEquals(itemsToAdd, this.list.size());
+    }
 }

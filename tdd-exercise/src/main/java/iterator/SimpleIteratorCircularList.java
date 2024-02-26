@@ -37,8 +37,7 @@ public class SimpleIteratorCircularList implements IteratorCircularList {
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.list.size();
     }
 
 }

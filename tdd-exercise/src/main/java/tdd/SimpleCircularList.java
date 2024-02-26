@@ -6,8 +6,9 @@ import java.util.Optional;
 
 public class SimpleCircularList implements CircularList {
 
+    private static final int LIST_FIRST_INDEX = 0;
     private final List<Integer> list;
-    private int listHead = 0;
+    private int listHead = LIST_FIRST_INDEX;
 
     public SimpleCircularList() {
         this.list = new ArrayList<Integer>();
@@ -30,6 +31,9 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> next() {
+        if (listHead >= this.size()) {
+            listHead = LIST_FIRST_INDEX;
+        }
         final Optional<Integer> opt = Optional.of(this.list.get(listHead));
         listHead = listHead + 1;
         return opt;

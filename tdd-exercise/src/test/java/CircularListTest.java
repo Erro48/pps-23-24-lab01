@@ -66,4 +66,15 @@ public class CircularListTest {
         assertTrue(next.isPresent());
         assertEquals(3, next.get());
     }
+
+    @Test
+    void getFirstElementAfterGettingLastOne() {
+        this.list.add(0);
+        this.list.add(1);
+        this.list.next();
+        this.list.next();
+        var next = this.list.next();
+        assertTrue(next.isPresent());
+        assertEquals(0, next.get());
+    }
 }

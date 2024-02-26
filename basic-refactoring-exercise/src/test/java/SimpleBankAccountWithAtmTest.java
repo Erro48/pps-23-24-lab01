@@ -11,16 +11,15 @@ import example.model.SimpleBankAccountWithAtm;
 
 class SimpleBankAccountWithAtmTest {
 
-
     private static final int BASIC_DOLLAR_AMOUNT = 100;
     AccountHolder accountHolder;
-    AccountHolder anotherAccountHolder;
+    AccountHolder accountHolder2;
     BankAccount atmBankAccount;
 
     @BeforeEach
     void beforeEach() {
         this.accountHolder = new AccountHolder("Mario", "Rossi", 1);
-        this.anotherAccountHolder = new AccountHolder("Luigi", "Verdi", 2);
+        this.accountHolder2 = new AccountHolder("Luigi", "Verdi", 2);
         this.atmBankAccount = new SimpleBankAccountWithAtm(this.accountHolder, 0);
     }
 
@@ -46,7 +45,14 @@ class SimpleBankAccountWithAtmTest {
     @Test
     void testWrongDeposit() {
         this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
-        this.atmBankAccount.deposit(this.anotherAccountHolder.getId(), BASIC_DOLLAR_AMOUNT);
+        this.atmBankAccount.deposit(this.accountHolder2.getId(), BASIC_DOLLAR_AMOUNT);
         assertEquals(99, this.atmBankAccount.getBalance());
+    }
+
+    @Test
+    void testWithdraw() {
+        this.atmBankAccount.deposit(this.accountHolder.getId(), BASIC_DOLLAR_AMOUNT);
+        this.atmBankAccount.withdraw(this.accountHolder.getId(), 30);
+        assertEquals(68, this.atmBankAccount.getBalance());
     }
 }

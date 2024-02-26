@@ -2,12 +2,20 @@ package iterator;
 
 import java.util.Iterator;
 
+import tdd.CircularList;
+import tdd.SimpleCircularList;
+
 public class SimpleIteratorCircularList implements IteratorCircularList {
+
+    final private CircularList list;
+
+    public SimpleIteratorCircularList() {
+        this.list = new SimpleCircularList();
+    }
 
     @Override
     public void add(int element) {
-        // TODO Auto-generated method stub
-        
+        this.list.add(element);
     }
 
     @Override
@@ -24,7 +32,7 @@ public class SimpleIteratorCircularList implements IteratorCircularList {
 
     @Override
     public boolean isEmpty() {
-        return true;
+        return this.list.isEmpty();
     }
 
     @Override

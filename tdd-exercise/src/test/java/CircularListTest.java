@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Assertions;
@@ -23,6 +25,12 @@ public class CircularListTest {
     @Test
     void testInitializeEmptyList() {
         assertTrue(this.list.isEmpty());
+    }
+
+    @Test
+    void testAddElement() {
+        this.list.add(0);
+        assertFalse(this.list.isEmpty());
     }
 
 }

@@ -1,13 +1,20 @@
 package tdd;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class SimpleCircularList implements CircularList {
 
+    private final List<Integer> list;
+
+    public SimpleCircularList() {
+        this.list = new ArrayList<Integer>();
+    }
+
     @Override
     public void add(int element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        this.list.add(element);
     }
 
     @Override
@@ -18,7 +25,7 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public boolean isEmpty() {
-        return true;
+        return this.list.isEmpty();
     }
 
     @Override

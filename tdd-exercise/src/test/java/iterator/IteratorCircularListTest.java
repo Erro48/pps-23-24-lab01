@@ -35,4 +35,13 @@ public class IteratorCircularListTest {
         }
         assertEquals(itemsToAdd, this.list.size());
     }
+
+    @Test
+    void getNextValue() {
+        this.list.add(0);
+        var iterator = this.list.forwardIterator();
+        assertTrue(iterator.hasNext());
+        var next = iterator.next();
+        assertTrue(next.equals(0));
+    }
 }

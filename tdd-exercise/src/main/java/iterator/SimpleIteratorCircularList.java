@@ -1,6 +1,7 @@
 package iterator;
 
 import java.util.Iterator;
+import java.util.ListIterator;
 
 import tdd.CircularList;
 import tdd.SimpleCircularList;
@@ -19,15 +20,26 @@ public class SimpleIteratorCircularList implements IteratorCircularList {
     }
 
     @Override
-    public Iterator backwardIterator() {
+    public Iterator<Integer> backwardIterator() {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Iterator forwardIterator() {
-        // TODO Auto-generated method stub
-        return null;
+    public Iterator<Integer> forwardIterator() {
+        return new Iterator<Integer>() {
+
+            @Override
+            public boolean hasNext() {
+                return !list.isEmpty();
+            }
+
+            @Override
+            public Integer next() {
+                return list.next().get();
+            }
+
+        };
     }
 
     @Override

@@ -27,11 +27,11 @@ public interface IteratorCircularList {
      * Return an iterator which yields next elements, circularly
      * @return a new iterator
      */
-    Iterator forwardIterator();
+    Iterator<Integer> forwardIterator();
 
     /**
      * Return an iterator which yields previous elements, circularly
      * @return a new iterator
      */
-    Iterator backwardIterator();
+    Iterator<Integer> backwardIterator();
 }

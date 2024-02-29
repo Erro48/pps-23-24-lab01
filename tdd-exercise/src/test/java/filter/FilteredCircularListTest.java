@@ -96,4 +96,18 @@ public class FilteredCircularListTest {
         assertTrue(next.isPresent());
         assertEquals(1, next.get());
     }
+
+    @Test
+    void getNextValueWithMixedFiltersWhichIntersect() {
+        final int numberOfItems = 10;
+        for (int i = 0; i < numberOfItems; i++) {
+            this.list.add(i);
+        }
+        this.list.filteredNext(element -> element % 2 == 0);
+        this.list.filteredNext(element -> element % 2 != 0);
+        this.list.filteredNext(element -> element % 2 != 0);
+        final Optional<Integer> next = this.list.filteredNext(element -> element % 2 == 0);
+        assertTrue(next.isPresent());
+        assertEquals(4, next.get());
+    }
 }

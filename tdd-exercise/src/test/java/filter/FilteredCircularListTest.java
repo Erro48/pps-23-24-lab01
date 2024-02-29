@@ -59,4 +59,14 @@ public class FilteredCircularListTest {
         assertTrue(next.isPresent());
         assertEquals(next.get(), 7);
     }
+
+    @Test
+    void filterConditionNotSatisfied() {
+        final int numberOfItems = 10;
+        for (int i = 0; i < numberOfItems; i++) {
+            this.list.add(i);
+        }
+        Optional<Integer> next = this.list.filteredNext(element -> element < -1);
+        assertFalse(next.isPresent());
+    }
 }

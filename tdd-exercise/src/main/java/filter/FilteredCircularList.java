@@ -27,6 +27,6 @@ public interface FilteredCircularList {
      * @param p
      * @return
      */
-    Optional<Integer> filteredNext(Predicate<Boolean> p); 
+    Optional<Integer> filteredNext(Predicate<Integer> p); 
         
 }

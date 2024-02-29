@@ -15,9 +15,18 @@ public class SimpleFilteredCircularList implements FilteredCircularList {
     }
 
     @Override
-    public Optional<Integer> filteredNext(Predicate<Boolean> p) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filteredNext'");
+    public Optional<Integer> filteredNext(Predicate<Integer> p) {
+        int listPointer = 0;
+        while (listPointer < this.list.size()) {
+            final Optional<Integer> next = this.list.next();
+            if (next.isPresent() && p.test(next.get())) {
+                return next;
+            }
+
+            listPointer = listPointer + 1;
+        }
+
+        return Optional.empty();
     }
 
     @Override

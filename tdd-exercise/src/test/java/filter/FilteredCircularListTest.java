@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +36,16 @@ public class FilteredCircularListTest {
             this.list.add(i);
         }
         assertEquals(numberOfItems, this.list.size());
+    }
+
+    @Test
+    void getNextValue() {
+        final int numberOfItems = 10;
+        for (int i = 0; i < numberOfItems; i++) {
+            this.list.add(i);
+        }
+        Optional<Integer> next = this.list.filteredNext(element -> element >= 5);
+        assertTrue(next.isPresent());
+        assertEquals(next.get(), 5);
     }
 }

@@ -21,8 +21,19 @@ public class SimpleIteratorCircularList implements IteratorCircularList {
 
     @Override
     public Iterator<Integer> backwardIterator() {
-        // TODO Auto-generated method stub
-        return null;
+        return new Iterator<Integer>() {
+
+            @Override
+            public boolean hasNext() {
+                return !list.isEmpty();
+            }
+
+            @Override
+            public Integer next() {
+                return list.previous().get();
+            }
+            
+        };
     }
 
     @Override

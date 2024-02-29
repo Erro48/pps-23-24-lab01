@@ -64,4 +64,13 @@ public class IteratorCircularListTest {
         final int next = forwardIterator.next();
         assertEquals(3, next);
     }
+
+    @Test
+    void getPreviousValue() {
+        this.list.add(0);
+        var iterator = this.list.backwardIterator();
+        assertTrue(iterator.hasNext());
+        var previous = iterator.next();
+        assertTrue(previous.equals(0));
+    }
 }

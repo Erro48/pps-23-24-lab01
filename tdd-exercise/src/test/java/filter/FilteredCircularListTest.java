@@ -69,4 +69,17 @@ public class FilteredCircularListTest {
         Optional<Integer> next = this.list.filteredNext(element -> element < -1);
         assertFalse(next.isPresent());
     }
+
+    @Test
+    void getNextValueCircularly() {
+        final int numberOfItems = 3;
+        for (int i = 2; i < numberOfItems + 2; i++) {
+            this.list.add(i);
+        }
+        this.list.filteredNext(element -> element % 2 == 0);
+        this.list.filteredNext(element -> element % 2 == 0);
+        Optional<Integer> next = this.list.filteredNext(element -> element % 2 == 0);
+        assertTrue(next.isPresent());
+        assertEquals(2, next.get());
+    }
 }

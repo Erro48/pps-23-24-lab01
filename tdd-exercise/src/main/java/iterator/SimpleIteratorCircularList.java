@@ -1,7 +1,6 @@
 package iterator;
 
 import java.util.Iterator;
-import java.util.ListIterator;
 
 import tdd.CircularList;
 import tdd.SimpleCircularList;

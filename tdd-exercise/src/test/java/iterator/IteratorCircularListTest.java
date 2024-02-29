@@ -46,21 +46,18 @@ public class IteratorCircularListTest {
     }
 
     @Test
-    void checkCircularityOfTheList() {
+    void checkForwardCircularityOfTheList() {
         final int numberOfItems = 10;
         final int numberOfCicles = 13;
         for (int i = 0; i < numberOfItems; i++) {
             this.list.add(i);
         }
-
         final var forwardIterator = this.list.forwardIterator();
-
         for (int i = 0; i < numberOfCicles; i++) {
             if (forwardIterator.hasNext()) {
                 forwardIterator.next();
             }
         }
-
         final int next = forwardIterator.next();
         assertEquals(3, next);
     }

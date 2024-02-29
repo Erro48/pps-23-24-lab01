@@ -48,4 +48,15 @@ public class FilteredCircularListTest {
         assertTrue(next.isPresent());
         assertEquals(next.get(), 5);
     }
+
+    @Test
+    void getNextValueTwoTimes() {
+        this.list.add(10);
+        this.list.add(4);
+        this.list.add(7);
+        this.list.filteredNext(element -> element >= 5);
+        Optional<Integer> next = this.list.filteredNext(element -> element >= 5);
+        assertTrue(next.isPresent());
+        assertEquals(next.get(), 7);
+    }
 }

@@ -27,8 +27,7 @@ public class SimpleFilteredCircularList implements FilteredCircularList {
 
     @Override
     public int size() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'size'");
+        return this.list.size();
     }
 
     @Override

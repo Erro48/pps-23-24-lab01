@@ -22,8 +22,7 @@ public class SimpleFilteredCircularList implements FilteredCircularList {
 
     @Override
     public void add(int element) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'add'");
+        this.list.add(element);
     }
 
     @Override

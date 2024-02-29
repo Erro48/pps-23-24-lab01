@@ -46,7 +46,7 @@ public class FilteredCircularListTest {
         }
         Optional<Integer> next = this.list.filteredNext(element -> element >= 5);
         assertTrue(next.isPresent());
-        assertEquals(next.get(), 5);
+        assertEquals(5, next.get());
     }
 
     @Test
@@ -57,7 +57,7 @@ public class FilteredCircularListTest {
         this.list.filteredNext(element -> element >= 5);
         Optional<Integer> next = this.list.filteredNext(element -> element >= 5);
         assertTrue(next.isPresent());
-        assertEquals(next.get(), 7);
+        assertEquals(7, next.get());
     }
 
     @Test
